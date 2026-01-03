@@ -534,8 +534,9 @@ elif menu == "📊 Dashboard":
         all_dates.extend(df_investasi['Tanggal'].tolist())
     
     if all_dates:
-        all_dates = pd.Series(pd.to_datetime(all_dates))
-        unique_months = sorted(all_dates.dt.strftime('%Y-%m').unique(), reverse=True)
+        # Convert to pandas Series and format to month string
+        dates_series = pd.Series(all_dates)
+        unique_months = sorted(dates_series.dt.strftime('%Y-%m').unique(), reverse=True)
         
         # Month filter with better styling
         col1, col2, col3 = st.columns([2, 2, 2])
